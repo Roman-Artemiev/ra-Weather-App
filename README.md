@@ -1,4 +1,4 @@
-<h1 align = "center"><a href="https://roman-artemiev.github.io/ra-Weather-App/"><img width="700" alt="Weather App" src="./readme/weather-app.jpg"></a>
+<h1 align = "center"><a href="https://roman-artemiev.github.io/ra-Weather-App/"><img width="700" alt="Weather App" src="./weather site.jpg"></a>
     <br>
     <br>
     ☁️ Weather App ☁️
