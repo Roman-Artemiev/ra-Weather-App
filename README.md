@@ -6,7 +6,7 @@
     <br>
 </h1>
 <p align = "center">
-    ☁️ Weather App  предоставляет актуальные данные о погоде в режиме реального времени. <br/> Смотрите прогнозы для различных мест в одно касание. ☁️
+    ☁️ Weather App provides up-to-date weather data in real time. See forecasts for various locations with one tap. ☁️
 </p>
 
 <h3>Main features:</h3>
