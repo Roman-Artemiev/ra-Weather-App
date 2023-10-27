@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <span class="loader"></span>
+    </div>
+
+
+    <div class="weather-find page-background">  
+        <div class="weather-find__error" id="weatherFindError">
+            <p>Your city is not finded!</p>
+        </div>
+
+        <div class="find-location">
+            <input class="find-location__input" id="findLocation" type="text" placeholder="Enter your city">
+
+            <svg class="find-location__icon" id="findLocationIcon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 40 40" fill="none">
+                <path d="M25.9563 25.4873L37 37M29.8642 16.1879C29.8642 23.4714 23.8505 29.3758 16.4321 29.3758C9.01375 29.3758 3 23.4714 3 16.1879C3 8.90441 9.01375 3 16.4321 3C23.8505 3 29.8642 8.90441 29.8642 16.1879Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+
+    <section class="weather-app page-background">
+        <div class="wrapper">
+            <div class="weather-app__wrapper">
+
+                <div class="weather-find__error" id="weatherFindError">
+                    <p>Your city is not finded!</p>
+                </div>
+
+                <div class="location-container">
+                    <div class="location" id="location">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 45 45" fill="none">
+                            <path d="M22.4999 25.1813C25.7308 25.1813 28.3499 22.5621 28.3499 19.3313C28.3499 16.1004 25.7308 13.4813 22.4999 13.4813C19.269 13.4813 16.6499 16.1004 16.6499 19.3313C16.6499 22.5621 19.269 25.1813 22.4999 25.1813Z" stroke="white" stroke-width="1.5"/>
+                            <path d="M6.78744 15.9188C10.4812 -0.318746 34.5374 -0.299995 38.2124 15.9375C40.3687 25.4625 34.4437 33.525 29.2499 38.5125C25.4812 42.15 19.5187 42.15 15.7312 38.5125C10.5562 33.525 4.63119 25.4438 6.78744 15.9188Z" stroke="white" stroke-width="1.5"/>
+                        </svg>
+                        <p>
+                            <span id="country">Country</span>
+                            <span id="countryFlag"></span>
+                        </p>
+                    </div> 
+                    
+                    <div class="change-location">
+                        <input class="change-location__input" id="changeLocation" type="text" autocomplete="off">
+
+                        <svg class="change-location__icon" id="changeLocationIcon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 40 40" fill="none">
+                            <path d="M25.9563 25.4873L37 37M29.8642 16.1879C29.8642 23.4714 23.8505 29.3758 16.4321 29.3758C9.01375 29.3758 3 23.4714 3 16.1879C3 8.90441 9.01375 3 16.4321 3C23.8505 3 29.8642 8.90441 29.8642 16.1879Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="weather-today">
+                    <div class="weather-today__main-container">
+                        <div>
+                            <div class="weather-today__icon" id="weatherTodayIcon">
+                                <img src="./img/Svg/weathers-icon/01n.svg" alt="">
+                            </div>
+
+                            <p class="sunrise-sunset">Sunrise: <span id="sunrise">07:56</span></p>
+                            <p class="sunrise-sunset">Sunset: <span id="sunset">16:43</span></p>
+                        </div>
+
+                        <div class="weather-today__main">
+                            <h2 class="date-today" id="dateToday">Friday 24 January 13:35</h2>
+                            <h1 class="current-temperature" id="currentTemperature">+1°C</h1>
+                            <h2 class="feels-like-temperature" id="feelsLikeTemperature">Fells like -3°C</h2>
+                        </div>
+                    </div>
+
+                    <div class="weather__more-details">
+                        <h2 class="more-details__title">More details:</h2>
+                        <p class="weather-details">
+                            Wind speed<span id="windSpeed">: 1-6 m/s</span>
+                        </p>
+                        <p class="weather-details">
+                            Air humidity<span id="airHumidity">: 45-74%</span>
+                        </p>
+                        <p class="weather-details">
+                            Pressure<span id="pressure">: 1033nbar</span>
+                        </p>
+                        <p class="weather-details">
+                            State<span id="weatherState">: snow</span>
+                        </p>
+                    </div>
+
+
+                    <div class="weather__today-schedule">
+                        <div class="today-schedule__title">
+                            <p>Schedule:</p>
+                        </div>
+
+                        <div class="today-schedule__weather">
+                            <div class="time-span" id="timeSpan1">
+                                <div class="time-span__icon" id="timeSpanIcon1">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M29.3533 14.28C29.5933 17.7133 32.5066 20.5066 35.9933 20.66C38.4533 20.7666 40.6533 19.62 41.9733 17.8133C42.52 17.0733 42.2266 16.58 41.3133 16.7466C40.8666 16.8266 40.4066 16.86 39.9266 16.84C36.6666 16.7066 34 13.98 33.9866 10.76C33.98 9.89331 34.16 9.07331 34.4866 8.32664C34.8466 7.49997 34.4133 7.10664 33.58 7.45997C30.94 8.57331 29.1333 11.2333 29.3533 14.28Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3908 29.6097C9.54052 29.1741 8.59394 28.9482 7.63132 28.9482C0.122892 29.4806 0.122892 40.4674 7.63132 40.9998H25.4237C27.5896 41.0159 29.6753 40.2092 31.2636 38.7411C36.542 34.1109 33.7183 24.802 26.7714 23.9147C24.2686 8.79783 2.56153 14.5413 7.71154 28.9482" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan1">-8°</p>
+                                <p class="time-span__time" id="scheduleTimeSpan1">00:00</p>
+                            </div>
+                            <div class="time-span" id="timeSpan2">
+                                <div class="time-span__icon" id="timeSpanIcon2">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M29.3533 14.28C29.5933 17.7133 32.5066 20.5066 35.9933 20.66C38.4533 20.7666 40.6533 19.62 41.9733 17.8133C42.52 17.0733 42.2266 16.58 41.3133 16.7466C40.8666 16.8266 40.4066 16.86 39.9266 16.84C36.6666 16.7066 34 13.98 33.9866 10.76C33.98 9.89331 34.16 9.07331 34.4866 8.32664C34.8466 7.49997 34.4133 7.10664 33.58 7.45997C30.94 8.57331 29.1333 11.2333 29.3533 14.28Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3908 29.6097C9.54052 29.1741 8.59394 28.9482 7.63132 28.9482C0.122892 29.4806 0.122892 40.4674 7.63132 40.9998H25.4237C27.5896 41.0159 29.6753 40.2092 31.2636 38.7411C36.542 34.1109 33.7183 24.802 26.7714 23.9147C24.2686 8.79783 2.56153 14.5413 7.71154 28.9482" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan2">-6°</p>
+                                <p class="time-span__time" id="scheduleTimeSpan2">04:00</p>
+                            </div>
+                            <div class="time-span" id="timeSpan3">
+                                <div class="time-span__icon" id="timeSpanIcon3">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M37.3171 34.4683C35.5433 36.0987 33.2142 36.9946 30.7954 36.9767H10.9258C2.55875 36.3675 2.54083 24.1842 10.9258 23.575H11.0154C6.17792 10.0658 22.715 3.40083 29.6667 11.8037V11.8217C30.9208 13.3625 31.8704 15.405 32.3004 18.0029C34.6833 18.3075 36.6183 19.4721 37.9979 21.1204C41.1333 24.8292 41.4021 30.885 37.3171 34.4683Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.0075 24.3096C13.0758 23.8438 12.0545 23.5929 11.0154 23.575" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M29.3979 18.7733C30.3296 18.3075 31.3509 18.0567 32.39 18.0388" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M40.3629 16.2291C40.3629 18.2 39.4491 19.9737 37.9979 21.1204C36.6183 19.4721 34.6833 18.3075 32.3004 18.0029C31.8704 15.405 30.9208 13.3625 29.6666 11.8216V11.8037C30.7954 10.6571 32.372 9.95831 34.092 9.95831C37.55 9.95831 40.3629 12.7712 40.3629 16.2291Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M27.6666 38.5H41.4166C43.025 38.5 44.3333 39.8083 44.3333 41.4167C44.3333 43.025 43.025 44.3333 41.4166 44.3333C39.8083 44.3333 38.5 43.025 38.5 41.4167V41" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M27.6666 36H41.4166C43.0166 36 44.3333 34.6917 44.3333 33.0834C44.3333 31.4834 43.0166 30.1667 41.4166 30.1667C39.8166 30.1667 38.5 31.475 38.5 33.0834V33.5" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M27.6666 33.5H33.7583C35 33.5 36 32.4917 36 31.2583C36 30.0167 34.9916 29.0167 33.7583 29.0167C32.5166 29.0167 31.5166 30.025 31.5166 31.2583V31.575" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.66663 13.5H15.4166C17.025 13.5 18.3333 14.8083 18.3333 16.4167C18.3333 18.025 17.025 19.3333 15.4166 19.3333C13.8083 19.3333 12.5 18.025 12.5 16.4167V16" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.66663 11H15.4166C17.0166 11 18.3333 9.69169 18.3333 8.08335C18.3333 6.48335 17.0166 5.16669 15.4166 5.16669C13.8166 5.16669 12.5 6.47502 12.5 8.08335V8.50002" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.66663 8.5H7.75829C8.99996 8.5 9.99996 7.49166 9.99996 6.25833C9.99996 5.01666 8.99162 4.01666 7.75829 4.01666C6.51662 4.01666 5.51662 5.025 5.51662 6.25833V6.575" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan3">-3°</p>
+                                <p class="time-span__time" id="scheduleTimeSpan3">08:00</p>
+                            </div>
+                            <div class="time-span"  id="timeSpan4">
+                                <div class="time-span__icon" id="timeSpanIcon4">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M39.2375 26.0116C39.7213 29.0037 38.8792 32.2108 36.3171 34.4683C34.5433 36.0987 32.2142 36.9946 29.7954 36.9766H9.92583C1.55875 36.3675 1.54083 24.1841 9.92583 23.575H10.0154C6.09167 12.5921 16.2863 6.14206 23.9725 8.61456" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.0075 24.3096C12.0758 23.8438 11.0545 23.5929 10.0154 23.575" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M39.363 16.2291C39.363 18.2 38.4492 19.9737 36.998 21.1204C35.9409 21.9804 34.5613 22.5 33.0921 22.5C29.6342 22.5 26.8213 19.6871 26.8213 16.2291C26.8213 14.5091 27.52 12.9504 28.6667 11.8216V11.8037C29.7955 10.6571 31.3721 9.95831 33.0921 9.95831C36.55 9.95831 39.363 12.7712 39.363 16.2291Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M28.5 38.25H40.875C42.3225 38.25 43.5 39.4275 43.5 40.875C43.5 42.3225 42.3225 43.5 40.875 43.5C39.4275 43.5 38.25 42.3225 38.25 40.875V40.5" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M28.5 36H40.875C42.315 36 43.5 34.8225 43.5 33.375C43.5 31.935 42.315 30.75 40.875 30.75C39.435 30.75 38.25 31.9275 38.25 33.375V33.75" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M28.5 33.75H33.9825C35.1 33.75 36 32.8425 36 31.7325C36 30.615 35.0925 29.715 33.9825 29.715C32.865 29.715 31.965 30.6225 31.965 31.7325V32.0175" stroke="#C8C8C8" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan4">-0°</p>
+                                <p class="time-span__time" id="scheduleTimeSpan4">12:00</p>
+                            </div>
+                            <div class="time-span" id="timeSpan5">
+                                <div class="time-span__icon" id="timeSpanIcon5">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_114_321)">
+                                        <path d="M39.2375 26.0116C39.7213 29.0037 38.8792 32.2108 36.3171 34.4683C34.5433 36.0987 32.2142 36.9946 29.7954 36.9766H9.92583C1.55875 36.3675 1.54083 24.1841 9.92583 23.575H10.0154C6.09167 12.5921 16.2863 6.14206 23.9725 8.61456" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M13.0075 24.3095C12.0758 23.8437 11.0545 23.5929 10.0154 23.575" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M39.363 16.2291C39.363 18.2 38.4492 19.9737 36.998 21.1204C35.9409 21.9804 34.5613 22.5 33.0921 22.5C29.6342 22.5 26.8213 19.6871 26.8213 16.2291C26.8213 14.5091 27.52 12.9504 28.6667 11.8216V11.8037C29.7955 10.6571 31.3721 9.95831 33.0921 9.95831C36.55 9.95831 39.363 12.7712 39.363 16.2291Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M29.5 39.25H41.875C43.3225 39.25 44.5 40.4275 44.5 41.875C44.5 43.3225 43.3225 44.5 41.875 44.5C40.4275 44.5 39.25 43.3225 39.25 41.875V41.5" stroke="#C5C5C5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M29.5 37H41.875C43.315 37 44.5 35.8225 44.5 34.375C44.5 32.935 43.315 31.75 41.875 31.75C40.435 31.75 39.25 32.9275 39.25 34.375V34.75" stroke="#C5C5C5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M29.5 34.75H34.9825C36.1 34.75 37 33.8425 37 32.7325C37 31.615 36.0925 30.715 34.9825 30.715C33.865 30.715 32.965 31.6225 32.965 32.7325V33.0175" stroke="#C5C5C5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2.5 11.25H14.875C16.3225 11.25 17.5 12.4275 17.5 13.875C17.5 15.3225 16.3225 16.5 14.875 16.5C13.4275 16.5 12.25 15.3225 12.25 13.875V13.5" stroke="#C5C5C5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2.5 9H14.875C16.315 9 17.5 7.8225 17.5 6.375C17.5 4.935 16.315 3.75 14.875 3.75C13.435 3.75 12.25 4.9275 12.25 6.375V6.75" stroke="#C5C5C5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2.5 6.75003H7.9825C9.1 6.75003 10 5.84253 10 4.73253C10 3.61503 9.0925 2.71503 7.9825 2.71503C6.865 2.71503 5.965 3.62253 5.965 4.73253V5.01753" stroke="#C5C5C5" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_114_321">
+                                        <rect width="46" height="46" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan5">+3°</p>
+                                <p class="time-span__time" id="scheduleTimeSpan5">16:00</p>
+                            </div>
+                            <div class="time-span" id="timeSpan6">
+                                <div class="time-span__icon" id="timeSpanIcon6">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M29.3533 14.28C29.5933 17.7133 32.5066 20.5066 35.9933 20.66C38.4533 20.7666 40.6533 19.62 41.9733 17.8133C42.52 17.0733 42.2266 16.58 41.3133 16.7466C40.8666 16.8266 40.4066 16.86 39.9266 16.84C36.6666 16.7066 34 13.98 33.9866 10.76C33.98 9.89331 34.16 9.07331 34.4866 8.32664C34.8466 7.49997 34.4133 7.10664 33.58 7.45997C30.94 8.57331 29.1333 11.2333 29.3533 14.28Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3908 29.6097C9.54052 29.1741 8.59394 28.9482 7.63132 28.9482C0.122892 29.4806 0.122892 40.4674 7.63132 40.9998H25.4237C27.5896 41.0159 29.6753 40.2092 31.2636 38.7411C36.542 34.1109 33.7183 24.802 26.7714 23.9147C24.2686 8.79783 2.56153 14.5413 7.71154 28.9482" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan6">0°</p>
+                                <p class="time-span__time"  id="scheduleTimeSpan6">20:00</p>
+                            </div>
+                            <div class="time-span" id="timeSpan7">
+                                <div class="time-span__icon" id="timeSpanIcon7">
+                                    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M29.3533 14.28C29.5933 17.7133 32.5066 20.5066 35.9933 20.66C38.4533 20.7666 40.6533 19.62 41.9733 17.8133C42.52 17.0733 42.2266 16.58 41.3133 16.7466C40.8666 16.8266 40.4066 16.86 39.9266 16.84C36.6666 16.7066 34 13.98 33.9866 10.76C33.98 9.89331 34.16 9.07331 34.4866 8.32664C34.8466 7.49997 34.4133 7.10664 33.58 7.45997C30.94 8.57331 29.1333 11.2333 29.3533 14.28Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10.3908 29.6097C9.54052 29.1741 8.59394 28.9482 7.63132 28.9482C0.122892 29.4806 0.122892 40.4674 7.63132 40.9998H25.4237C27.5896 41.0159 29.6753 40.2092 31.2636 38.7411C36.542 34.1109 33.7183 24.802 26.7714 23.9147C24.2686 8.79783 2.56153 14.5413 7.71154 28.9482" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <p class="time-span__temperature" id="scheduleTempSpan7">-2°</p>
+                                <p class="time-span__time" id="scheduleTimeSpan7">24:00</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            
+                <div class="weekly-weather">
+                    <div class="wrapper">
+                        <div class="weekly-weather__bar" id="weeklyBar">
+                            <div class="weekly-weather__thumb-active" id="weeklyThumb">
+                                <p class="weekly-weather__thumb-day" id="weeklyWeatherThumbDay">Today</p>
+                                <div class="weekly-weather__thumb">
+                                    <svg viewBox="0 0 154 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 8H152" stroke="#D7B815" stroke-width="4" stroke-linecap="round"/>
+                                        <path class="weekly-weather__thumb-arrow" d="M28.5 7.5L32.5 3.5L36.5 7.5" stroke="#D7B815" stroke-width="4" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="weekly-weather__row">
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay1">Monday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate1">24 jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp1">-8</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp1">+3</span></p>
+                                <div class="weekly-weather__column-icon" id="weeklyIcon1">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.33325 25H30.8333C34.0499 25 36.6666 27.6167 36.6666 30.8333C36.6666 34.05 34.0499 36.6667 30.8333 36.6667C27.6166 36.6667 24.9999 34.05 24.9999 30.8333V30" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.33325 20H30.8333C34.0333 20 36.6666 17.3834 36.6666 14.1667C36.6666 10.9667 34.0333 8.33337 30.8333 8.33337C27.6333 8.33337 24.9999 10.95 24.9999 14.1667V15" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.33325 15H15.5166C17.9999 15 19.9999 12.9833 19.9999 10.5167C19.9999 8.03333 17.9832 6.03333 15.5166 6.03333C13.0332 6.03333 11.0332 8.04999 11.0332 10.5167V11.15" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather1">Snowfall</span>
+                            </div>
+
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay2">Tuesday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate2">25 Jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp2">-2</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp2">+7</span></p>
+                                <div class="weekly-weather__column-icon"  id="weeklyIcon2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M27.6834 33.3334C29.9167 33.35 32.0667 32.5167 33.7167 31.0167C39.1667 26.25 36.25 16.6834 29.0667 15.7834C26.5 0.216703 4.05004 6.1167 9.36671 20.9334" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.1334 21.6167C11.25 21.1667 10.2667 20.9334 9.28335 20.9501C1.51669 21.5001 1.53335 32.8001 9.28335 33.3501" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M26.3667 16.4834C27.2334 16.0501 28.1667 15.8167 29.1334 15.8" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M21.6591 30.8333H21.6741" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.9926 30.8333H15.0076" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18.3258 35.8333H18.3408" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather2">Snowfall</span>
+                            </div>
+
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay3">Wednesday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate3">26 jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp3">-5</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp3">+1</span></p>
+                                <div class="weekly-weather__column-icon" id="weeklyIcon3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M33.7834 31.1334C32.1334 32.65 29.9667 33.4834 27.7167 33.4667H9.2334C1.45007 32.9 1.4334 21.5667 9.2334 21H9.31673C4.81673 8.43337 20.2001 2.23337 26.6667 10.05V10.0667C27.8334 11.5 28.7167 13.4 29.1167 15.8167C31.3334 16.1 33.1334 17.1834 34.4167 18.7167C37.3334 22.1667 37.5834 27.8 33.7834 31.1334Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.1 21.6833C11.2333 21.25 10.2833 21.0167 9.31665 21" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M26.4167 16.5333C27.2834 16.1 28.2334 15.8666 29.2001 15.85" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M36.6167 14.1667C36.6167 16 35.7667 17.65 34.4167 18.7167C33.1334 17.1834 31.3334 16.1 29.1167 15.8167C28.7167 13.4 27.8334 11.5 26.6667 10.0667V10.05C27.7167 8.98337 29.1834 8.33337 30.7834 8.33337C34.0001 8.33337 36.6167 10.95 36.6167 14.1667Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather3">Cloudy</span>
+                            </div>
+
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay4">Thursday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate4">27 jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp4">-12</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp4">+4</span></p>
+                                <div class="weekly-weather__column-icon" id="weeklyIcon4">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.33325 25H30.8333C34.0499 25 36.6666 27.6167 36.6666 30.8333C36.6666 34.05 34.0499 36.6667 30.8333 36.6667C27.6166 36.6667 24.9999 34.05 24.9999 30.8333V30" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.33325 20H30.8333C34.0333 20 36.6666 17.3834 36.6666 14.1667C36.6666 10.9667 34.0333 8.33337 30.8333 8.33337C27.6333 8.33337 24.9999 10.95 24.9999 14.1667V15" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.33325 15H15.5166C17.9999 15 19.9999 12.9833 19.9999 10.5167C19.9999 8.03333 17.9832 6.03333 15.5166 6.03333C13.0332 6.03333 11.0332 8.04999 11.0332 10.5167V11.15" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather4">Coldly</span>
+                            </div>
+
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay5">Friday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate5">28 jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp5">-11</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp5">-5</span></p>
+                                <div class="weekly-weather__column-icon" id="weeklyIcon5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M27.6834 33.3334C29.9167 33.35 32.0667 32.5167 33.7167 31.0167C39.1667 26.25 36.25 16.6834 29.0667 15.7834C26.5 0.216703 4.05004 6.1167 9.36671 20.9334" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.1334 21.6167C11.25 21.1667 10.2667 20.9334 9.28335 20.9501C1.51669 21.5001 1.53335 32.8001 9.28335 33.3501" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M26.3667 16.4834C27.2334 16.0501 28.1667 15.8167 29.1334 15.8" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M21.6591 30.8333H21.6741" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.9926 30.8333H15.0076" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18.3258 35.8333H18.3408" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather5">Snowfall</span>
+                            </div>
+
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay6">Saturday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate6">29 jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp6">-6</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp6">-1</span></p>
+                                <div class="weekly-weather__column-icon" id="weeklyIcon6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M3.33325 25H30.8333C34.0499 25 36.6666 27.6167 36.6666 30.8333C36.6666 34.05 34.0499 36.6667 30.8333 36.6667C27.6166 36.6667 24.9999 34.05 24.9999 30.8333V30" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.33325 20H30.8333C34.0333 20 36.6666 17.3834 36.6666 14.1667C36.6666 10.9667 34.0333 8.33337 30.8333 8.33337C27.6333 8.33337 24.9999 10.95 24.9999 14.1667V15" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.33325 15H15.5166C17.9999 15 19.9999 12.9833 19.9999 10.5167C19.9999 8.03333 17.9832 6.03333 15.5166 6.03333C13.0332 6.03333 11.0332 8.04999 11.0332 10.5167V11.15" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather6">Windy</span>
+                            </div>
+
+                            <div class="weekly-weather__column">
+                                <h3 class="weekly-weather__column-day" id="weeklyDay7">Sunday</h3>
+                                <span class="weekly-weather__column-date" id="weeklyDate7">30 jan.</span>
+                                <p class="weekly-weather__column-min-temperature weekly-weather__column-temperature">Min. <span id="weeklyMinTemp7">-2</span></p>
+                                <p class="weekly-weather__column-max-temperature weekly-weather__column-temperature">Max. <span id="weeklyMaxTemp7">+6</span></p>
+                                <div class="weekly-weather__column-icon" id="weeklyIcon7">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <path d="M27.6834 33.3334C29.9167 33.35 32.0667 32.5167 33.7167 31.0167C39.1667 26.25 36.25 16.6834 29.0667 15.7834C26.5 0.216703 4.05004 6.1167 9.36671 20.9334" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.1334 21.6166C11.25 21.1666 10.2667 20.9333 9.28335 20.9499C1.51668 21.4999 1.53335 32.7999 9.28335 33.3499" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M26.3667 16.4834C27.2334 16.0501 28.1667 15.8167 29.1334 15.8" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16.6165 33.3334L13.2832 36.6667" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M23.2833 33.3334L19.95 36.6667" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M23.2833 26.6666L19.95 30" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16.6165 26.6666L13.2832 30" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <span class="weekly-weather__column-weather-condition" id="weeklyWeather7">Rain</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js' integrity='sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==' crossorigin='anonymous'></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
